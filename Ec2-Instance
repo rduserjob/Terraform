@@ -1,0 +1,16 @@
+provider "aws" {
+    region = "us-west-1"
+}
+resource "aws_instance" "instance-test"{
+  ami = "ami-04b70fa74e45c3917"
+  instance_type = "t2.micro"
+  key_name = "oahp"
+  vpc_security_group_ids = ["sg-091fd376e5eeccdf7"]
+  tags = {
+    Name = "Terraform_Instance"
+  }
+root_block_device {
+    volume_size = 20  # Size of the root volume in gigabytes
+    volume_type = "gp2"  # Type of the root volume (e.g., gp2, io1, st1, sc1)
+  }
+}
